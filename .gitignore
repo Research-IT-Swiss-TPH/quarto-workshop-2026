@@ -15,3 +15,8 @@
 !README.md
 !_extensions/**
 !.claude/skills/quarto-tph-starter/**
+
+# 4. Allow exercises folder, but hide the solution subfolder
+!exercises/**
+exercises/solution/
+exercises/report-starter.pdf
