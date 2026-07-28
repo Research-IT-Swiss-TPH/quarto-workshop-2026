@@ -1,0 +1,62 @@
+---
+title: "Malaria Cases Report"
+author: "Zhihan"
+date: today
+format:
+  pdf:
+    toc: true
+# bibliography: references.bib   # uncomment for the bibliography bonus
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+cases <- read_csv("data/cases.csv")
+```
+
+# Introduction
+
+<!-- TASK 1: Write 2-3 sentences of Markdown describing this report.
+     Try a **bold** word, an *italic* word, and a [link](https://quarto.org). -->
+
+# Results
+
+## Cases over time
+
+<!-- TASK 2: This chunk makes a figure. Give it a caption via fig-cap
+     and a label starting with `fig-` so you can cross-reference it. -->
+
+```{r}
+#| label: fig-cases
+#| fig-cap: "TODO: write a caption"
+
+ggplot(cases, aes(month, n, colour = region)) +
+  geom_line() +
+  labs(x = "Month", y = "Cases")
+```
+
+## Summary table
+
+<!-- TASK 3: This chunk makes a table. -->
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "TODO: write a caption"
+
+cases |>
+  group_by(region) |>
+  summarise(total = sum(n), mean = round(mean(n), 1))
+```
+
+# Discussion
+
+<!-- TASK 4: Cross-reference the figure and table above.
+     Use @fig-cases and @tbl-summary in a sentence, e.g.:
+     "As shown in @fig-cases, cases peaked mid-year (see @tbl-summary)." -->
+
+<!-- BONUS: cite a reference with [@somekey] after enabling the bibliography. -->
