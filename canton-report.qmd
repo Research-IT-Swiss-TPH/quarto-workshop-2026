@@ -1,0 +1,137 @@
+---
+title: "Population Report: `r params$canton`"
+additional1: ""
+additional2: ""
+subtitle: "Cantonal population in national context"
+projectname: "Quarto Workshop"
+author:
+  - name: Zhihan Zhu
+    affiliation: Swiss TPH
+    email: zhihan.zhu@swisstph.ch
+format:
+  report-typst:
+    section-numbering: "1.1.1"
+numbering: 1
+date: last-modified
+fontsize: 11pt
+lang: en
+toc: true
+toc-depth: 3
+# --- The parameter lives here. This value is the DEFAULT. ---
+# When you render from a script (or the command line) you can OVERRIDE it,
+# e.g. quarto render canton-report.qmd -P canton:"Zürich"
+params:
+  canton: "Basel-Stadt"
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# include: false means this chunk runs but produces no output in the report.
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+# One shared dataset for the whole report.
+cantons <- read_csv("swiss_cantons_dummy.csv", show_col_types = FALSE)
+
+# Everything below derives from params$canton + this dataset.
+# Nothing about a specific canton is hard-coded.
+this_canton <- params$canton
+
+# Rank by population (1 = most populous), computed from the FULL table.
+cantons <- cantons |>
+  mutate(rank = min_rank(desc(population)))
+
+# Pull out the single row for the selected canton.
+row <- cantons |> filter(canton == this_canton)
+```
+
+## Overview
+
+`r this_canton` is located in the **`r row$language_region`-speaking**
+region of Switzerland.
+
+As of the latest figures, `r this_canton` has a resident population of
+**`r format(row$population, big.mark = "'", scientific = FALSE)`**, making it the
+**`r row$rank``r ifelse(row$rank == 1, "st", ifelse(row$rank == 2, "nd", ifelse(row$rank == 3, "rd", "th")))`
+most populous** of Switzerland's 26 cantons. Its area of
+`r format(row$area_km2, big.mark = "'")` km² gives a population density of about
+**`r round(row$population / row$area_km2)` people per km²**.
+
+## This canton in national context
+
+The table below places `r this_canton` alongside the national total and the
+cantonal average. The **density** column is computed at render time
+(population ÷ area) — it is not stored in the data.
+
+```{r}
+#| label: tbl-context
+#| tbl-cap: !expr paste(this_canton, "compared with national figures")
+#| echo: false
+
+national_total <- sum(cantons$population)
+national_mean  <- mean(cantons$population)
+
+context <- tibble(
+  Measure    = c(this_canton, "National total", "Cantonal average"),
+  Population = c(row$population, national_total, national_mean),
+  `Area (km²)` = c(row$area_km2, sum(cantons$area_km2), mean(cantons$area_km2)),
+  `Density (per km²)` = c(
+    row$population / row$area_km2,
+    national_total / sum(cantons$area_km2),
+    national_mean  / mean(cantons$area_km2)
+  )
+)
+
+context |>
+  mutate(
+    Population = round(Population),
+    `Area (km²)` = round(`Area (km²)`),
+    `Density (per km²)` = round(`Density (per km²)`)
+  ) |>
+  kable(format.args = list(big.mark = "'"))
+```
+
+## Where it sits among all cantons
+
+@fig-pop shows every canton by population, with **`r this_canton` highlighted**.
+The chart is drawn the same way every time — only the highlighted bar moves as
+you change the parameter.
+
+```{r}
+#| label: fig-pop
+#| fig-cap: !expr paste("Resident population by canton.", this_canton, "is highlighted.")
+#| fig-height: 6
+
+cantons |>
+  mutate(is_selected = canton == this_canton) |>
+  ggplot(aes(x = reorder(canton, population), y = population, fill = is_selected)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_manual(values = c(`TRUE` = "#C8102E", `FALSE` = "grey70"),
+                    guide = "none") +          # red = the Swiss flag colour
+  scale_y_continuous(labels = scales::label_number(big.mark = "'")) +
+  labs(x = NULL, y = "Resident population") +
+  theme_minimal()
+```
+
+<!-- STRETCH IDEA (for the intermediate crowd): -->
+<!-- The block below only appears for multilingual cantons. It shows that the -->
+<!-- parameter can drive which CONTENT appears, not just which values are shown. -->
+
+```{r}
+#| label: conditional-note
+#| echo: false
+#| results: asis
+
+if (grepl("/", row$language_region)) {
+  cat("::: callout-note\n")
+  cat("###", this_canton, "is multilingual\n\n")
+  cat("This canton spans more than one language region:",
+      row$language_region, "\n")
+  cat(":::\n")
+}
+```

@@ -1,0 +1,69 @@
+\begin{titlepage}
+
+\AddToShipoutPicture*{
+     % logo
+    \AtPageLowerLeft{
+      \put(\LenToUnit{\dimexpr\paperwidth-0.85\paperwidth}, \LenToUnit{0.25\paperheight}){
+        \includegraphics[width=2\paperwidth]{_extensions/report/SwissTPH_icon_2026.png}
+      }%
+    }%
+}
+
+\vspace*{8cm}
+
+\hspace*{2cm}
+$date$
+
+\begingroup
+     \setlength{\leftskip}{2cm}% indent whole paragraph by 2cm
+     \noindent{\Huge \bfseries \textcolor{swisstphindigo}{$title$}\par}
+\endgroup
+
+\vspace{1cm}
+
+$if(additional1)$
+\begingroup
+      \setlength{\leftskip}{2cm}% indent whole paragraph by 2cm
+      \noindent{\Huge \textbf{\textcolor{swisstphindigo}{$additional1$}} \par} % Additional line 1
+\endgroup
+$endif$
+
+$if(additional2)$
+\begingroup
+      \setlength{\leftskip}{2cm}% indent whole paragraph by 2cm
+      \noindent{\Huge \textbf{\textcolor{swisstphindigo}{$additional2$}} \par} % Additional line 2
+\endgroup
+$endif$
+
+\vspace{0.5cm}
+
+\begingroup
+      \setlength{\leftskip}{2cm}% indent whole paragraph by 2cm
+      \noindent{\huge {$subtitle$} \par} % Subtitle of document
+\endgroup
+
+\begingroup
+      \setlength{\leftskip}{2cm}% indent whole paragraph by 2cm
+      \noindent{\huge {$projectname$} \par} % Name of project
+\endgroup
+
+\vspace{0.5cm}
+
+$for(by-author)$
+  \hspace*{2cm}{\large \textbf{$if(by-author.name)$$by-author.name.literal$$endif$}}\\
+  \hspace*{2cm}{\small $if(by-author.url)$\url{$by-author.url$}$endif$}\\
+  \hspace*{2cm}{\small $if(by-author.email)$\url{$by-author.email$}$endif$}\\
+  \hspace*{2cm}{\small $if(by-author.phone)$$by-author.phone$$endif$}\\
+  \hspace*{2cm}{\small $if(by-author.orcid)$\url{$by-author.orcid$}$endif$}\\
+$endfor$
+
+\AddToShipoutPicture*{
+     % logo
+    \AtPageLowerLeft{
+      \put(\LenToUnit{\dimexpr\paperwidth-0.3\paperwidth}, \LenToUnit{0.05\paperheight}){
+        \includegraphics[width=0.2\paperwidth]{_extensions/report/SwissTPH_Logo_Screen_Indigo_rgb.png}
+      }%
+    }%
+}
+
+\end{titlepage}

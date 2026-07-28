@@ -1,0 +1,43 @@
+---
+title: "Your document title"
+subtitle: "Subtitle of document / project / mandate"
+author:
+  - name: Jane Doe
+    affiliations:
+      - ref: stph
+    corresponding: true
+    email: jane.doe@swisstph.ch
+    orcid: 0000-0000-0000-0000
+affiliations:
+  - id: stph
+    name: Swiss Tropical and Public Health Institute, Basel, Switzerland
+date: today
+editor: visual
+execute:
+  echo: false
+  warning: false
+filters:
+  - word-report
+format:
+  docx:
+    number-sections: true
+    reference-doc: _extensions/word-report/report_template2.docx
+---
+
+# Executive summary
+
+Write your summary here.
+
+# Heading 1
+
+Body text.
+
+## Heading 2
+
+Body text.
+
+<!--
+Needs in the working directory: _extensions/word-report/ (do NOT rename or move it).
+Word caveat: do not combine this template with landscape mode — cover-page images break.
+Docs: https://quarto.org/docs/output-formats/ms-word.html
+-->

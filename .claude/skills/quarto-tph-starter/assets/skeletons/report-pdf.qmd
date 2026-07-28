@@ -1,0 +1,52 @@
+---
+title: "TITLE OF DOCUMENT"
+additional1: "ADDITIONAL LINE 1"
+additional2: "ADDITIONAL LINE 2"
+subtitle: "Subtitle of Document"
+projectname: "Name of Project/Mandate, etc..."
+author:
+  - name: Jane Doe
+    url: https://www.swisstph.ch/en/
+    email: jane.doe@swisstph.ch
+    phone: 123456789
+    orcid: https://orcid.org/
+format:
+  report-pdf:
+    pdf-engine: xelatex
+date: last-modified
+mainfont: Arial
+fontsize: 11pt
+lang: en
+execute:
+  echo: false
+  warning: false
+toc: true
+toc-depth: 3
+toc-title: \textcolor{swisstphindigo}{TABLE OF CONTENTS}
+bibliography: references.bib
+---
+
+```{r}
+# Keep one R chunk even if empty so rendering is reliable.
+```
+
+\newpage
+
+# EXECUTIVE SUMMARY
+
+Write your summary here.
+
+# EXAMPLE HEADING 1
+
+Body text.
+
+## EXAMPLE HEADING 2
+
+Body text.
+
+<!--
+Needs in the working directory:
+  - _extensions/report/ (do NOT rename or move it)
+  - references.bib  (delete this line + the `bibliography:` key above if you have no citations)
+Uses LaTeX (xelatex) — a TeX install is required. Docs: https://quarto.org/docs/output-formats/pdf-basics.html
+-->

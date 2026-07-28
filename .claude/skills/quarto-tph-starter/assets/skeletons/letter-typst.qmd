@@ -1,0 +1,52 @@
+---
+title: "letter"
+format:
+  letter-typst
+date: last-modified
+mainfont: Arial
+fontsize: 11pt
+lang: en
+execute:
+  echo: false
+  warning: false
+params:
+  prefix: Mr.
+  first_name: James
+  last_name: Smith
+  organisation: University of Basel
+  address: Petersplatz 1, P. O. Box
+  zip: 4001
+  city: Basel
+sender:
+  first_name: Anna
+  last_name: Muster
+  email: anna.muster@swisstph.ch
+  phone: +41 79 xxx xx xx
+---
+
+```{r}
+# Keep one R chunk even if empty so rendering is reliable.
+```
+
+`r params$prefix` `r params$first_name` `r params$last_name`
+
+`r params$organisation`
+
+`r params$address`
+
+`r params$zip` `r params$city`
+
+`r params$city`, `{r} format(Sys.Date(), "%d.%m.%Y")`
+
+Subject
+
+Dear `r params$prefix` `r params$last_name`,
+
+Write the body of your letter here.
+
+Kind regards,
+
+<!--
+Needs in the working directory: _extensions/letter/ (do NOT rename or move it).
+Typst renders a PDF without a LaTeX install. Docs: https://quarto.org/docs/output-formats/typst.html
+-->

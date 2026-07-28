@@ -1,0 +1,36 @@
+---
+title: "Your presentation title"
+author: "Your name"
+format: pptx
+editor: visual
+metadata-files:
+  - _ppt_metadata.yml
+---
+
+# Section title
+
+## Slide title
+
+Write slide content as markdown. Bullets:
+
+-   First point
+-   Second point
+
+## Two-column slide
+
+::::: columns
+::: {.column width="50%"}
+Left column content.
+:::
+
+::: {.column width="50%"}
+Right column content.
+:::
+:::::
+
+<!--
+Needs in the same working directory:
+  - _ppt_metadata.yml
+  - the Swiss TPH template .pptx (e.g. ppt_template2.pptx) referenced inside _ppt_metadata.yml
+Docs: https://quarto.org/docs/presentations/powerpoint.html
+-->
