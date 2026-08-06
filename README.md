@@ -10,6 +10,9 @@ Hands-on introduction to [Quarto](https://quarto.org) for reproducible reports a
 - Install RStudio from Swiss TPH company portal.
 - Confirm that Quarto exists in your laptop by running `quarto check` in Powershell terminal
 - Install R packages
+```{r}
+install.packages(c("knitr", "readr", "dplyr", "ggplot2", "scales"))
+```
 - Install TinyTex (if Latex needed)
 ```{r}
 install.packages("tinytex")
