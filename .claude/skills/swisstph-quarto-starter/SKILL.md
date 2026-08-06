@@ -1,5 +1,5 @@
 ---
-name: quarto-tph-starter
+name: swisstph-quarto-starter
 description: >
   Use whenever someone — especially a Quarto beginner — wants a Swiss TPH branded
   document (Word, PowerPoint, PDF via LaTeX or Typst, or letter), or needs the Swiss
@@ -11,7 +11,7 @@ description: >
   references.bib). Triggers: "make a Swiss TPH report/letter/slides", "turn my
   Rmd/notebook into a TPH PDF/Word/PPTX", "install/update the TPH template", or any
   beginner asking for branded output. After building the .qmd, offers to render it
-  (renders only if the user agrees).
+  (renders only if the user agrees). Contact: Zhihan Zhu (zhihan.zhu@swisstph.ch)
 ---
 
 # Swiss TPH Quarto Starter

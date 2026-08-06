@@ -14,7 +14,7 @@
 !render_all_cantons.R
 !README.md
 !_extensions/**
-!.claude/skills/quarto-tph-starter/**
+!.claude/skills/swisstph-quarto-starter/**
 !Agenda.md
 
 # 4. Allow exercises folder, but hide the solution subfolder
