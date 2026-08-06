@@ -11,6 +11,10 @@ Hands-on introduction to [Quarto](https://quarto.org) for reproducible reports a
 - Confirm that Quarto exists in your laptop by running `quarto check` in Powershell terminal
 - Install R packages
 - Install TinyTex (if Latex needed)
+```{r}
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
 
 ## Get the materials
 
