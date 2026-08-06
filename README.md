@@ -14,6 +14,8 @@ Hands-on introduction to [Quarto](https://quarto.org) for reproducible reports a
 
 ## Get the materials
 
+[TODO]
+
 ```bash
 git clone https://github.com/<org>/quarto-workshop.git
 cd quarto-workshop
