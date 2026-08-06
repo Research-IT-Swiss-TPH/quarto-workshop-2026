@@ -1,35 +1,66 @@
 ---
 title: "Malaria Cases Report"
-author: "Zhihan"
+subtitle: "A Quarto workshop starter document"
+author: "Your Name"
 date: today
 format:
+# TASK 1 - OUTPUT FORMAT: Try to switch to different format.
   pdf:
     toc: true
-# bibliography: references.bib   # uncomment for the bibliography bonus
+    number-sections: true
+#
+# BONUS A — BIBLIOGRAPHY: uncomment the next line.
+# bibliography: references.bib
+#
+# BONUS B — SWISS TPH TEMPLATE: see TASK 8 at the bottom of this file.
+
+# Try switching between the Source and Visual editor in RStudio
+# (top-left of the editor pane) to see the same file two ways.
+editor: source
 ---
 
 ```{r}
 #| label: setup
 #| include: false
 
+# include: false -> this chunk runs, but neither the code nor its output
+# appears in the rendered report.
+
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(knitr)
 
-cases <- read_csv("data/cases.csv")
+cases <- read_csv("data/cases.csv", show_col_types = FALSE)
 ```
 
 # Introduction
 
-<!-- TASK 1: Write 2-3 sentences of Markdown describing this report.
-     Try a **bold** word, an *italic* word, and a [link](https://quarto.org). -->
+
+<!-- TASK 2 — MARKDOWN
+     Write 2-3 sentences describing this report.
+     Include a **bold** word, an *italic* word, and a [link](https://quarto.org). -->
+
+
+
+<!-- TASK 3 — INLINE CODE
+     Numbers should never be typed by hand. Replace the two TODOs below with
+     inline R code so they update themselves whenever the data changes.
+     Inline code looks like this:  `r nrow(cases)`
+
+     "The dataset covers [TODO] monthly observations and [TODO] cases in total."
+     Hint for the second one: sum(cases$n) -->
+
 
 # Results
 
 ## Cases over time
 
-<!-- TASK 2: This chunk makes a figure. Give it a caption via fig-cap
-     and a label starting with `fig-` so you can cross-reference it. -->
+
+<!-- TASK 4 — FIGURE + CAPTION
+     Replace the TODO caption below. The chunk label already starts with
+     `fig-`, which is what makes the figure cross-referenceable. -->
+
 
 ```{r}
 #| label: fig-cases
@@ -40,9 +71,30 @@ ggplot(cases, aes(month, n, colour = region)) +
   labs(x = "Month", y = "Cases")
 ```
 
+
+<!-- TASK 5 — CHUNK OPTIONS
+     Add these options to the fig-cases chunk above, one at a time,
+     re-rendering after each so you can see what each one does:
+
+     #| echo: false        hide the code, keep the figure
+     #| warning: false     suppress warnings
+     #| fig-width: 8       widen the figure
+     #| fig-height: 4      shorten the figure -->
+
+
 ## Summary table
 
-<!-- TASK 3: This chunk makes a table. -->
+
+<!-- TASK 6 — TABLE + CAPTION
+     1. Write a real caption instead of the TODO.
+     2. A raw data frame prints as ugly monospaced text. Pipe the result into
+        `kable()` to get a properly formatted table:
+
+        cases |>
+          group_by(region) |>
+          summarise(total = sum(n), mean = round(mean(n), 1)) |>
+          kable()                                                            -->
+
 
 ```{r}
 #| label: tbl-summary
@@ -55,8 +107,36 @@ cases |>
 
 # Discussion
 
-<!-- TASK 4: Cross-reference the figure and table above.
-     Use @fig-cases and @tbl-summary in a sentence, e.g.:
+
+<!-- TASK 7 — CROSS-REFERENCES
+     Write a sentence that refers to the figure and the table by their labels.
+     Quarto turns them into numbered, clickable links:
+
      "As shown in @fig-cases, cases peaked mid-year (see @tbl-summary)." -->
 
-<!-- BONUS: cite a reference with [@somekey] after enabling the bibliography. -->
+
+
+<!-- BONUS A — BIBLIOGRAPHY
+     1. Uncomment `bibliography: references.bib` in the YAML header.
+     2. Cite a source in a sentence:  ... transparent surveillance [@li2025malaria].
+     3. Render. A References section appears at the end automatically.
+        (Look inside references.bib to see the available citation keys.) -->
+
+
+
+<!-- BONUS B — SWISS TPH TEMPLATE (extensions)
+     Swiss TPH Quarto templates are here: https://github.com/Research-IT-Swiss-TPH/stphtoolbox/tree/main/inst/quarto
+     Quarto formats can be installed as extensions. To brand this report:
+     1. Follow the install steps in the template README, or ask AI
+        (the `quarto-tph-starter` skill) to do it for you.
+     2. Replace the `format:` block in the YAML header with the TPH format:
+
+        format:
+          report-typst:
+            section-numbering: "1.1.1"
+
+     3. Render. Same content, Swiss TPH layout, logo and fonts.             -->
+
+
+
+
