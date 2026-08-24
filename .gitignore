@@ -16,6 +16,7 @@
 !_extensions/**
 !.claude/skills/swisstph-quarto-starter/**
 !Agenda.md
+!*.Rproj
 
 # 4. Allow exercises folder, but hide the solution subfolder
 !exercises/**
