@@ -2,26 +2,23 @@
 
 Hands-on introduction to [Quarto](https://quarto.org) for reproducible reports at Swiss TPH.
 
-- **Audience:** R / RStudio users
+- **Audience:** R / RStudio users with basic R knowledge
 - **Duration:** ~2 hours (lecture + hands-on)
 
 ## Before you arrive
 
 - Install RStudio from Swiss TPH company portal.
-- Confirm that Quarto exists in your laptop by running `quarto check` in Powershell terminal
 - Install R packages
 ```{r}
 install.packages(c("knitr", "readr", "dplyr", "ggplot2", "scales"))
 ```
-- Install TinyTex (if Latex needed)
+- Install TinyTex (optional, if you would like to render PDF reports with Latex)
 ```{r}
 install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
 ## Get the materials
-
-[TODO]
 
 ```bash
 git clone https://github.com/<org>/quarto-workshop.git
