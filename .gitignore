@@ -18,9 +18,8 @@
 !Agenda.md
 !*.Rproj
 
-# 4. Allow exercises folder, but hide the solution subfolder
+# 4. Allow exercises folder, including the solution subfolder
 !exercises/**
-exercises/solution/
 exercises/report-starter.pdf
 exercises/report-starter.docx
 exercises/.Rhistory

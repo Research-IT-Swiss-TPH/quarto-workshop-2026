@@ -5,9 +5,11 @@ author: "Your Name"
 date: today
 format:
 # TASK 1 - OUTPUT FORMAT: Try to switch to different format.
-  pdf:
+  typst:
+    mainfont: "Arial"
     toc: true
     number-sections: true
+fontsize: 11pt
 #
 # BONUS A — BIBLIOGRAPHY: uncomment the next line.
 # bibliography: references.bib

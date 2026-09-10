@@ -1,0 +1,119 @@
+---
+title: "Malaria Cases Report"
+subtitle: "A Quarto workshop starter document"
+author: "Workshop Solution"
+date: today
+# TASK 1 - OUTPUT FORMAT: one format at a time. To switch, comment out the
+# typst block and uncomment the pdf or html one (or swap in docx / revealjs).
+format:
+  typst:
+    mainfont: "Arial"
+    toc: true
+    number-sections: true
+# pdf:
+#   toc: true
+#   number-sections: true
+# html:
+#   toc: true
+#   number-sections: true
+fontsize: 11pt
+#
+# BONUS A — BIBLIOGRAPHY (typst cannot read files outside the document's
+# folder, so this solution keeps its own copy of references.bib)
+bibliography: references.bib
+#
+# BONUS B — SWISS TPH TEMPLATE: see the comment at the bottom of this file.
+
+# Try switching between the Source and Visual editor in RStudio
+# (top-left of the editor pane) to see the same file two ways.
+editor: source
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# include: false -> this chunk runs, but neither the code nor its output
+# appears in the rendered report.
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+cases <- read_csv("../data/cases.csv", show_col_types = FALSE)
+```
+
+# Introduction
+
+<!-- TASK 2 — MARKDOWN -->
+
+This report summarises reported **malaria** cases across three regions over
+twelve months. It is a *worked solution* for the Quarto workshop and
+demonstrates Markdown, inline code, figures, tables, and cross-references.
+See the [Quarto documentation](https://quarto.org) for more.
+
+<!-- TASK 3 — INLINE CODE -->
+
+The dataset covers `r nrow(cases)` monthly observations and
+`r sum(cases$n)` cases in total.
+
+# Results
+
+## Cases over time
+
+@fig-cases shows monthly cases by region.
+
+<!-- TASK 4 — FIGURE + CAPTION, TASK 5 — CHUNK OPTIONS -->
+
+```{r}
+#| label: fig-cases
+#| fig-cap: "Monthly reported malaria cases by region."
+#| echo: false
+#| warning: false
+#| fig-width: 8
+#| fig-height: 4
+
+ggplot(cases, aes(month, n, colour = region)) +
+  geom_line() +
+  labs(x = "Month", y = "Cases")
+```
+
+## Summary table
+
+<!-- TASK 6 — TABLE + CAPTION (piped into kable() for proper formatting) -->
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Total and mean monthly cases by region."
+#| echo: false
+
+cases |>
+  group_by(region) |>
+  summarise(total = sum(n), mean = round(mean(n), 1)) |>
+  kable()
+```
+
+# Discussion
+
+<!-- TASK 7 — CROSS-REFERENCES -->
+
+As shown in @fig-cases, cases peaked mid-year across all regions, with the
+totals summarised in @tbl-summary. Reproducible reporting like this supports
+transparent surveillance [@li2025malaria].
+
+<!-- BONUS B — SWISS TPH TEMPLATE (extensions)
+     Swiss TPH Quarto templates are here: https://github.com/Research-IT-Swiss-TPH/stphtoolbox/tree/main/inst/quarto
+     Quarto formats can be installed as extensions. To brand this report:
+     1. Follow the install steps in the template README, or ask AI
+        (the `quarto-tph-starter` skill) to do it for you.
+     2. Replace the `format:` block above with the TPH format:
+
+        format:
+          report-typst:
+            section-numbering: "1.1.1"
+
+     3. Render. Same content, Swiss TPH layout, logo and fonts.
+
+     Left commented here so this solution renders without the extension
+     installed.                                                            -->
