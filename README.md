@@ -29,7 +29,11 @@ Or download the ZIP from the green **Code** button.
 
 ## What's in here
 
-[TODO]
+- `exercises/report-instructions.qmd`: the exercise handout; render this file
+  to PDF before the workshop.
+- `exercises/report-starter.qmd`: the minimal file participants edit.
+- `exercises/data/cases.csv`: the data used in the exercise.
+- `slides/lecture.pptx`: the workshop slides.
 
 ## License
 
