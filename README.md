@@ -21,7 +21,7 @@ tinytex::install_tinytex()
 ## Get the materials
 
 ```bash
-git clone https://github.com/<org>/quarto-workshop.git
+git clone https://github.com/Research-IT-Swiss-TPH/quarto-workshop-2026.git
 cd quarto-workshop
 ```
 
