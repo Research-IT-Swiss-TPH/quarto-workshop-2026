@@ -13,6 +13,7 @@
 !swiss_cantons_dummy.csv
 !render_all_cantons.R
 !README.md
+!/LICENSE
 !_extensions/**
 !.claude/skills/swisstph-quarto-starter/**
 !Agenda.md

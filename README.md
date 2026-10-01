@@ -37,4 +37,7 @@ Or download the ZIP from the green **Code** button.
 
 ## License
 
-Materials under [CC-BY-4.0](LICENSE). Reuse with attribution.
+Unless otherwise noted, the workshop materials are licensed under
+[Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
+When reusing them, credit the authors, link to the license, and indicate
+any changes.
