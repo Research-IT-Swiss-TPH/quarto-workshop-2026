@@ -8,7 +8,7 @@
 
 # 3. Allow source files (anywhere in tree)
 !.gitignore
-!lecture.pptx
+!lecture.pdf
 !canton-report.qmd
 !swiss_cantons_dummy.csv
 !render_all_cantons.R
